@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Raj Kumawat · RK Logix · MERN Stack Architect</title>
+    <!-- Google Fonts: Inter + Playfair Display -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Swiper JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        /* ----- SAME STYLES (aapke diye huye) ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #020308 0%, #0a0b14 100%);
+            color: #eaeef2;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 15% 30%, rgba(0, 206, 209, 0.08) 0%, transparent 35%),
+                radial-gradient(circle at 80% 70%, rgba(157, 78, 221, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 40% 20%, rgba(255, 107, 107, 0.05) 0%, transparent 30%),
+                radial-gradient(circle at 90% 85%, rgba(255, 230, 109, 0.05) 0%, transparent 35%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        :root {
+            --primary: #00ced1;
+            --primary-dark: #00a1a3;
+            --primary-light: #6aebef;
+            --secondary: #9d4edd;
+            --secondary-dark: #7b2cbf;
+            --secondary-light: #c77dff;
+            --accent-1: #ff6b6b;
+            --accent-2: #ffe66d;
+            --dark-bg: #020308;
+            --card-bg: rgba(18, 22, 35, 0.85);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-primary: #ffffff;
+            --text-secondary: #c0c5cc;
+            --text-muted: #9095a0;
+            --gradient-1: linear-gradient(135deg, #00ced1, #9d4edd);
+            --gradient-2: linear-gradient(45deg, #ff6b6b, #ffe66d);
+            --shadow-md: 0 25px 50px -12px rgba(0,206,209,0.25);
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, #d0d5dd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-subhead {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 3rem;
+            font-weight: 400;
+            line-height: 1.8;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 0.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1.1rem 2.8rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            border: none;
+            background-size: 200% auto;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--primary));
+            color: white;
+            box-shadow: 0 0 20px rgba(0,206,209,0.3);
+        }
+
+        .btn-primary:hover {
+            background-position: right center;
+            transform: translateY(-3px);
+            box-shadow: 0 0 35px rgba(157,78,221,0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            background: rgba(0,206,209,0.1);
+            transform: translateY(-3px);
+        }
+
+        .btn-download {
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            color: white;
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-download:hover {
+            background-position: right center;
+            transform: translateY(-3px);
+            box-shadow: 0 0 35px rgba(37, 211, 102, 0.5);
+        }
+
+        .btn-mobile {
+            display: none;
+            width: 100%;
+            margin: 2rem 0 1rem;
+            padding: 1rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: white;
+            font-weight: 600;
+            border-radius: 40px;
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-mobile:hover {
+            background: rgba(0,206,209,0.15);
+            border-color: var(--primary);
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(45deg, #25D366, #128C7E);
+            color: white;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+            transition: var(--transition);
+            z-index: 999;
+            animation: pulse 2s infinite;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 15px 35px rgba(37, 211, 102, 0.5);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        header {
+            padding: 2rem 0 1rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4rem 0;
+            gap: 3rem;
+        }
+
+        .hero-content {
+            flex: 1 1 350px;
+        }
+
+        .hero-greeting {
+            font-size: 1.25rem;
+            color: var(--primary);
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-name {
+            font-size: 5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #ffffff, var(--primary-light), #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 1s ease 0.1s both;
+        }
+
+        .brand-name {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            animation: fadeInUp 1s ease 0.15s both;
+        }
+
+        .brand-name span {
+            background: rgba(157,78,221,0.2);
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            border-left: 3px solid var(--secondary);
+        }
+
+        .hero-title {
+            font-size: 2rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-desc {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            max-width: 550px;
+            line-height: 1.8;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .hero-buttons {
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.8rem;
+            margin-top: 2.5rem;
+        }
+
+        .social-links a {
+            font-size: 1.6rem;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .hero-graphic {
+            flex: 0.9;
+            text-align: center;
+            position: relative;
+        }
+
+        .rk-logix-showcase {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .logo-3d {
+            font-size: 4.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff 0%, var(--primary) 50%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(0,206,209,0.3);
+            line-height: 1;
+            display: inline-block;
+            animation: float 4s ease-in-out infinite;
+            letter-spacing: -2px;
+        }
+
+        .brand-badge {
+            background: rgba(0,206,209,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0,206,209,0.3);
+            padding: 0.5rem 1.5rem;
+            border-radius: 40px;
+            display: inline-block;
+            margin-top: 1rem;
+            font-weight: 600;
+            color: white;
+            border-left: 3px solid var(--secondary);
+        }
+
+        .brand-badge i {
+            color: var(--secondary);
+            margin-right: 0.5rem;
+        }
+
+        .floating-icons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .floating-icons i {
+            position: absolute;
+            color: rgba(255,255,255,0.1);
+            font-size: 2rem;
+            animation: floatSlow 8s infinite;
+        }
+
+        .floating-icons i:nth-child(1) { top: -20px; right: 20px; animation-delay: 0s; color: var(--primary); opacity: 0.3; }
+        .floating-icons i:nth-child(2) { bottom: 20px; left: -20px; animation-delay: 2s; color: var(--secondary); opacity: 0.3; }
+        .floating-icons i:nth-child(3) { bottom: -20px; right: 60px; animation-delay: 4s; color: var(--accent-1); opacity: 0.2; }
+
+        .portfolio-section {
+            padding: 6rem 0;
+            background: rgba(2,3,8,0.8);
+        }
+
+        .project-filters {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--gradient-1);
+            color: white;
+            border-color: transparent;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,206,209,0.3);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: 28px;
+            overflow: hidden;
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-12px);
+            border-color: var(--primary);
+            box-shadow: 0 30px 60px -15px rgba(0,206,209,0.25);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 280px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-img::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 50%, rgba(2,3,8,0.95));
+        }
+
+        .project-overlay {
+            position: absolute;
+            bottom: -60px;
+            left: 0;
+            width: 100%;
+            padding: 1.8rem;
+            transition: var(--transition);
+            z-index: 2;
+        }
+
+        .project-card:hover .project-overlay {
+            bottom: 0;
+        }
+
+        .project-cat {
+            color: var(--primary);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.3rem;
+        }
+
+        .project-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            color: white;
+        }
+
+        .project-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1.8rem;
+            margin-top: 0.8rem;
+        }
+
+        .project-links a {
+            color: white;
+            font-size: 0.95rem;
+            font-weight: 500;
+            border-bottom: 2px solid transparent;
+            transition: var(--transition);
+        }
+
+        .project-links a:hover {
+            border-bottom-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .about-section {
+            padding: 5rem 0;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .skills-section {
+            padding: 5rem 0;
+            background: rgba(2,3,8,0.6);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            text-align: center;
+        }
+
+        .skill-circle {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            margin: 0 auto 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.7rem;
+            font-weight: 700;
+            background: conic-gradient(var(--primary) 0deg, rgba(255,255,255,0.1) 0deg);
+        }
+
+        .skill-circle span {
+            background: #0a0b14;
+            width: 106px;
+            height: 106px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.6);
+            color: white;
+        }
+
+        .skill-title {
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.3rem;
+        }
+
+        .process-section {
+            padding: 5rem 0;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .process-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 2rem;
+            transition: var(--transition);
+            border-left: 3px solid transparent;
+        }
+
+        .process-card:hover {
+            border-left-color: var(--primary);
+            transform: translateX(5px);
+            background: rgba(0,206,209,0.05);
+        }
+
+        .step-num {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.8rem;
+        }
+
+        .testimonial-section {
+            padding: 4rem 0;
+        }
+
+        .swiper {
+            width: 100%;
+            padding: 2rem 0;
+        }
+
+        .testimonial-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: 30px;
+            padding: 2rem;
+            transition: var(--transition);
+        }
+
+        .testimonial-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .contact-section {
+            padding: 5rem 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 40px;
+            padding: 3rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group input, 
+        .form-group select, 
+        .form-group textarea {
+            width: 100%;
+            padding: 1.2rem 1.5rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            color: white;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='white'><path d='M7 10l5 5 5-5z'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 1.5rem center;
+            background-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .form-group select option {
+            background: #0a0b14;
+            color: white;
+            padding: 1rem;
+        }
+
+        .form-group select option:hover,
+        .form-group select option:focus,
+        .form-group select option:active,
+        .form-group select option:checked {
+            background: var(--primary);
+            color: white;
+        }
+
+        .form-group input:focus, 
+        .form-group select:focus, 
+        .form-group textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(0,206,209,0.1);
+            background: rgba(0,206,209,0.05);
+        }
+
+        .cv-download-section {
+            margin: 2rem 0;
+        }
+
+        .cv-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer {
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: var(--text-muted);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-15px) scale(1.05); }
+            100% { transform: translateY(0px) scale(1); }
+        }
+
+        @keyframes floatSlow {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        @media (max-width: 992px) {
+            h2 { font-size: 2.5rem; }
+            .hero-name { font-size: 4rem; }
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 0 20px; }
+            h2 { font-size: 2.2rem; }
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem 0;
+            }
+            .hero-content { text-align: center; }
+            .hero-desc { margin-left: auto; margin-right: auto; }
+            .hero-name { font-size: 3.5rem; }
+            .brand-name span { display: inline-block; }
+            .social-links { justify-content: center; }
+            .hero-graphic { margin-top: 2rem; }
+            .logo-3d { font-size: 4rem; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .project-img { height: 240px; }
+            .contact-grid { 
+                grid-template-columns: 1fr; 
+                padding: 2rem;
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .mobile-hidden {
+                display: block;
+            }
+            .mobile-hidden.show-mobile {
+                display: block;
+            }
+            .see-more-container {
+                display: block;
+            }
+            .btn-mobile {
+                display: block;
+            }
+            .process-section .process-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+            .testimonial-section {
+                padding: 2rem 0;
+            }
+            .whatsapp-float {
+                width: 55px;
+                height: 55px;
+                font-size: 1.8rem;
+                bottom: 20px;
+                right: 20px;
+            }
+            .cv-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-name { font-size: 2.8rem; }
+            .btn { padding: 0.9rem 1.8rem; }
+            .project-title { font-size: 1.4rem; }
+            .skill-circle { width: 110px; height: 110px; }
+            .skill-circle span { width: 90px; height: 90px; }
+            .logo-3d { font-size: 3.2rem; }
+        }
+
+        .mobile-hidden {
+            display: block;
+        }
+
+        .see-more-container {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- FIXED WHATSAPP CHAT BUTTON -->
+    <a href="https://wa.me/919876543210?text=Hi%20Raj%2C%20I%27m%20interested%20in%20your%20MERN%20stack%20services." 
+       class="whatsapp-float" 
+       target="_blank"
+       title="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <header>
+        <div class="container">
+            <div class="hero">
+                <div class="hero-content">
+                    <div class="hero-greeting" data-aos="fade-up">WELCOME TO</div>
+                    <h1 class="hero-name" data-aos="fade-up" data-aos-delay="50">Raj Kumawat</h1>
+                    <div class="brand-name" data-aos="fade-up" data-aos-delay="80">
+                        <span><i class="fas fa-cube"></i> RK Logix</span>
+                    </div>
+                    <div class="hero-title" data-aos="fade-up" data-aos-delay="100">MERN Stack Architect</div>
+                    <p class="hero-desc" data-aos="fade-up" data-aos-delay="150">
+                        <span style="color: var(--primary);">Former Web Designer</span> → MERN Stack Developer. 
+                        Completed intensive MERN Stack training at <strong style="color: white;">Groot Academy, Jaipur</strong>. 
+                        Now building scalable full-stack solutions under RK Logix.
+                    </p>
+                    <div class="hero-buttons" data-aos="fade-up" data-aos-delay="200">
+                        <a href="#portfolio" class="btn btn-primary"><i class="fas fa-arrow-right" style="margin-right: 8px;"></i> View Work</a>
+                        <a href="#contact" class="btn btn-outline" style="margin-left: 1rem;"><i class="fas fa-paper-plane"></i> Connect</a>
+                    </div>
+                    
+                    
+                    <div class="social-links" data-aos="fade-up" data-aos-delay="300">
+                        <a href="https://github.com/rklogixtech"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/raj-kumawat-702503218/"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-dribbble"></i></a>
+                        <a href="#"><i class="fab fa-behance"></i></a>
+                    </div>
+                </div>
+                
+                <div class="hero-graphic" data-aos="fade-left" data-aos-delay="350">
+                    <div class="rk-logix-showcase">
+                        <div style="position: relative;">
+                            <div class="logo-3d">
+                                RK<span style="color: var(--secondary);">⚡</span>LOGIX
+                            </div>
+                            <div class="brand-badge">
+                                <i class="fas fa-bolt"></i> SINCE 2025
+                            </div>
+                            <div class="floating-icons">
+                                <i class="fas fa-code"></i>
+                                <i class="fas fa-database"></i>
+                                <i class="fas fa-cloud"></i>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 0.8rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap;">
+                            <span style="background: rgba(0,206,209,0.15); border: 1px solid rgba(0,206,209,0.3); padding: 0.4rem 1.2rem; border-radius: 40px; font-size: 0.9rem; backdrop-filter: blur(5px);">MERN</span>
+                            <span style="background: rgba(157,78,221,0.15); border: 1px solid rgba(157,78,221,0.3); padding: 0.4rem 1.2rem; border-radius: 40px; font-size: 0.9rem; backdrop-filter: blur(5px);">React</span>
+                            <span style="background: rgba(255,107,107,0.15); border: 1px solid rgba(255,107,107,0.3); padding: 0.4rem 1.2rem; border-radius: 40px; font-size: 0.9rem; backdrop-filter: blur(5px);">Node.js</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="about-section">
+        <div class="container">
+            <div class="about-grid">
+                <div data-aos="fade-right">
+                    <span class="section-label">MY STORY</span>
+                    <h2>Design → Code → RK Logix.</h2>
+                    <div style="font-size: 1.3rem; font-weight: 600; color: var(--primary-light); margin-bottom: 1.5rem; font-family: 'Playfair Display', serif;">
+                        "From Groot Academy to founding RK Logix"
+                    </div>
+                    <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 2rem;">
+                        After completing my <strong style="color: white;">MERN Stack training at Groot Academy, Jaipur</strong>, 
+                        I fused over 3 years of experience as a Web Designer with modern full-stack development. 
+                        Today, as the founder of <strong style="color: white;">RK Logix</strong>, I craft digital solutions that are built to scale.
+                    </p>
+                    <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
+                        <div>
+                            <div style="font-size: 2.5rem; font-weight: 700; color: var(--primary);">18+</div>
+                            <div style="color: var(--text-muted);">Projects Delivered</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 2.5rem; font-weight: 700; color: var(--secondary);">10+</div>
+                            <div style="color: var(--text-muted);">MERN Applications</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 2.5rem; font-weight: 700; color: var(--accent-1);">5+</div>
+                            <div style="color: var(--text-muted);">E‑commerce Platform</div>
+                        </div>
+                    </div>
+                    
+                    <!-- CV Download in About Section -->
+                    <div class="cv-download-section" style="margin-top: 2rem;" data-aos="fade-up">
+                        <a href="Raj_Kumawat_MERN_Stack_CV.pdf" download class="btn btn-download" style="padding: 0.8rem 2rem;">
+                            <i class="fas fa-download"></i> Download Full CV
+                        </a>
+                    </div>
+                </div>
+                <div style="background: var(--card-bg); backdrop-filter: blur(12px); border: 1px solid var(--card-border); border-radius: 30px; padding: 2.5rem;" data-aos="fade-left">
+                    <span class="section-label">RK LOGIX</span>
+                    <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; color: white;">Ready to build your next big thing.</h3>
+                    <div style="margin-bottom: 1.5rem;">
+                        <p style="margin-bottom: 1rem;"><i class="fas fa-user" style="color: var(--primary); width: 30px;"></i> <span style="color: var(--text-secondary); margin-left: 10px;">Raj Kumawat</span></p>
+                        <p style="margin-bottom: 1rem;"><i class="fas fa-map-marker-alt" style="color: var(--primary); width: 30px;"></i> <span style="color: var(--text-secondary); margin-left: 10px;">Jaipur, Rajasthan</span></p>
+                        <p style="margin-bottom: 1rem;"><i class="fas fa-graduation-cap" style="color: var(--primary); width: 30px;"></i> <span style="color: var(--text-secondary); margin-left: 10px;">Groot Academy (MERN Stack Certification)</span></p>
+                        <p style="margin-bottom: 1rem;"><i class="fas fa-building" style="color: var(--secondary); width: 30px;"></i> <span style="color: var(--text-secondary); margin-left: 10px;">Founder: RK Logix</span></p>
+                        <p style="margin-bottom: 1rem;"><i class="fas fa-envelope" style="color: var(--primary); width: 30px;"></i> <span style="color: var(--text-secondary); margin-left: 10px;">raj@rklogix.dev</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="skills-section">
+        <div class="container">
+            <span class="section-label" data-aos="fade-up">CAPABILITIES</span>
+            <h2 data-aos="fade-up">Built with a modern stack.</h2>
+            <div class="skills-grid">
+                <div class="skill-item" data-aos="fade-up" data-aos-delay="0">
+                    <div class="skill-circle" style="background: conic-gradient(var(--primary) 0deg 324deg, rgba(255,255,255,0.1) 0deg);">
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-title">HTML/CSS/JS</div>
+                    <span style="color: var(--text-muted);">4+ Projects</span>
+                </div>
+                <div class="skill-item" data-aos="fade-up" data-aos-delay="50">
+                    <div class="skill-circle" style="background: conic-gradient(var(--secondary) 0deg 288deg, rgba(255,255,255,0.1) 0deg);">
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-title">React.js</div>
+                    <span style="color: var(--text-muted);">MERN Expertise</span>
+                </div>
+                <div class="skill-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="skill-circle" style="background: conic-gradient(var(--accent-1) 0deg 270deg, rgba(255,255,255,0.1) 0deg);">
+                        <span>75%</span>
+                    </div>
+                    <div class="skill-title">Node.js</div>
+                    <span style="color: var(--text-muted);">Express API</span>
+                </div>
+                <div class="skill-item" data-aos="fade-up" data-aos-delay="150">
+                    <div class="skill-circle" style="background: conic-gradient(var(--accent-2) 0deg 252deg, rgba(255,255,255,0.1) 0deg);">
+                        <span>70%</span>
+                    </div>
+                    <div class="skill-title">MongoDB</div>
+                    <span style="color: var(--text-muted);">E‑commerce Ready</span>
+                </div>
+                <div class="skill-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="skill-circle" style="background: conic-gradient(var(--primary) 0deg 306deg, rgba(255,255,255,0.1) 0deg);">
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-title">UI/UX</div>
+                    <span style="color: var(--text-muted);">Design Legacy</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="process-section">
+        <div class="container">
+            <span class="section-label" data-aos="fade-up">METHODOLOGY</span>
+            <h2 data-aos="fade-up">The RK Logix workflow.</h2>
+            <div class="process-grid">
+                <div class="process-card mobile-hidden" data-aos="flip-up" data-aos-delay="0">
+                    <div class="step-num">01</div>
+                    <h3>Discovery</h3>
+                    <p style="color: var(--text-secondary);">User stories & competitive audit</p>
+                </div>
+                <div class="process-card mobile-hidden" data-aos="flip-up" data-aos-delay="100">
+                    <div class="step-num">02</div>
+                    <h3>Architecture</h3>
+                    <p style="color: var(--text-secondary);">MERN structure, database design</p>
+                </div>
+                <div class="process-card mobile-hidden" data-aos="flip-up" data-aos-delay="200">
+                    <div class="step-num">03</div>
+                    <h3>UI/UX Design</h3>
+                    <p style="color: var(--text-secondary);">Figma prototypes & design systems</p>
+                </div>
+                <div class="process-card mobile-hidden" data-aos="flip-up" data-aos-delay="300">
+                    <div class="step-num">04</div>
+                    <h3>Development</h3>
+                    <p style="color: var(--text-secondary);">React + Node.js + MongoDB</p>
+                </div>
+                <div class="process-card mobile-hidden" data-aos="flip-up" data-aos-delay="400">
+                    <div class="step-num">05</div>
+                    <h3>Testing</h3>
+                    <p style="color: var(--text-secondary);">Jest, React Testing Library</p>
+                </div>
+                <div class="process-card mobile-hidden" data-aos="flip-up" data-aos-delay="500">
+                    <div class="step-num">06</div>
+                    <h3>Deployment</h3>
+                    <p style="color: var(--text-secondary);">Vercel, Netlify, AWS</p>
+                </div>
+            </div>
+            <div class="see-more-container" id="seeMoreProcess">
+                <button class="btn-mobile" onclick="toggleMobileItems('process')">
+                    <i class="fas fa-chevron-down"></i> See More Process Steps
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="portfolio-section">
+        <div class="container">
+            <span class="section-label" data-aos="fade-up">PORTFOLIO</span>
+            <h2 data-aos="fade-up">RK Logix showcase.</h2>
+            <p class="section-subhead" data-aos="fade-up">4 HTML/CSS/JS · 3 MERN · 1 E‑commerce — each project displayed with full-screen previews.</p>
+            
+            <div class="project-filters" data-aos="fade-up">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="html">HTML/CSS/JS</button>
+                <button class="filter-btn" data-filter="mern">MERN Stack</button>
+                <button class="filter-btn" data-filter="ecomm">E‑commerce</button>
+            </div>
+
+            <div class="projects-grid" id="projects-grid">
+                <div class="project-card" data-category="html" data-aos="zoom-in-up" data-aos-delay="0">
+                    <div class="project-img" style="background-image: url('project-1.jpeg');">
+                        <div class="project-overlay">
+                            <div class="project-cat">HTML/CSS/JS</div>
+                            <h3 class="project-title">Portfolio v1</h3>
+                            <p class="project-desc">Built a complete responsive website using Bootstrap..</p>
+                            <div class="project-links">
+                                <a href="https://bootstrap-demo-tau.vercel.app"><i class="fas fa-external-link-alt"></i> Live</a>
+                                <a href="https://github.com/rklogixtech/bootstrap-demo"><i class="fab fa-github"></i> Code</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card" data-category="html" data-aos="zoom-in-up" data-aos-delay="50">
+                    <div class="project-img" style="background-image: url('project-2.jpeg');">
+                        <div class="project-overlay">
+                            <div class="project-cat">HTML/CSS/JS</div>
+                            <h3 class="project-title">Foodie Restaurant</h3>
+                            <p class="project-desc">Fully responsive menu and shopping cart interface, built with vanilla JavaScript.</p>
+                            <div class="project-links">
+                                <a href="https://burger-cafe-ast9.vercel.app/"><i class="fas fa-external-link-alt"></i> Live</a>
+                                <a href="https://github.com/rklogixtech/burger-cafe"><i class="fab fa-github"></i> Code</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card" data-category="html" data-aos="zoom-in-up" data-aos-delay="100">
+                    <div class="project-img" style="background-image: url('project-3.png');">
+                        <div class="project-overlay">
+                            <div class="project-cat">HTML/CSS/JS</div>
+                            <h3 class="project-title">bungalow-makers</h3>
+                            <p class="project-desc">Bungalow Makers - House Design Company Website </p>
+                            <div class="project-links">
+                                <a href="https://bungalow-makers.vercel.app"><i class="fas fa-external-link-alt"></i> Live</a>
+                                <a href="https://github.com/rklogixtech/bungalow-makers"><i class="fab fa-github"></i> Code</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card" data-category="html" data-aos="zoom-in-up" data-aos-delay="150">
+                    <div class="project-img" style="background-image: url('project-4.png');">
+                        <div class="project-overlay">
+                            <div class="project-cat">HTML/CSS/JS</div>
+                            <h3 class="project-title">-THE-BULLTOWER</h3>
+                            <p class="project-desc"> a modern and professional trading platform built for stock market learners and active traders.</p>
+                            <div class="project-links">
+                                <a href="https://the-bulltower.vercel.app"><i class="fas fa-external-link-alt"></i> Live</a>
+                                <a href="https://github.com/rklogixtech/the-bulltower"><i class="fab fa-github"></i> Code</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card" data-category="mern" data-aos="zoom-in-up" data-aos-delay="200">
+                    <div class="project-img" style="background-image: url('project-5.png');">
+                        <div class="project-overlay">
+                            <div class="project-cat">HTML/CSS/JS</div>
+                            <h3 class="project-title">funky-teens-online</h3>
+                            <p class="project-desc">Funky Teens - Your one-stop destination for trendy fashion. Shop the latest collection of menswear, womenswear, cosmetics, and accessories at affordable prices.</p>
+                            <div class="project-links">
+                                <a href="https://funky-teens-online.vercel.app"><i class="fas fa-external-link-alt"></i> Live</a>
+                                <a href="https://github.com/rklogixtech/funky-teens-online"><i class="fab fa-github"></i> Code</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card" data-category="mern" data-aos="zoom-in-up" data-aos-delay="250">
+                    <div class="project-img" style="background-image: url('project-6.png');">
+                        <div class="project-overlay">
+                            <div class="project-cat">MERN · Socket.io</div>
+                            <h3 class="project-title">Connectly</h3>
+                            <p class="project-desc">Real-time chat application with Socket.io, Redux, Express and MongoDB Atlas.</p>
+                            <div class="project-links">
+                                <a href="#"><i class="fas fa-external-link-alt"></i> Live</a>
+                                <a href="#"><i class="fab fa-github"></i> Code</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card" data-category="mern" data-aos="zoom-in-up" data-aos-delay="300">
+                    <div class="project-img" style="background-image: url('Blog Space.webp');">
+                        <div class="project-overlay">
+                            <div class="project-cat">MERN · CMS</div>
+                            <h3 class="project-title">BlogSpace</h3>
+                            <p class="project-desc">Markdown editor, Context API, RESTful API architecture.</p>
+                            <div class="project-links">
+                                <a href="#"><i class="fas fa-external-link-alt"></i> Live</a>
+                                <a href="#"><i class="fab fa-github"></i> Code</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card" data-category="ecomm" data-aos="zoom-in-up" data-aos-delay="350">
+                    <div class="project-img" style="background-image: url('EcoMart.webp');">
+                        <div class="project-overlay">
+                            <div class="project-cat">E‑COMMERCE (MERN)</div>
+                            <h3 class="project-title">EcoMart</h3>
+                            <p class="project-desc">Complete cart system, Stripe payment integration, admin panel and live deployment.</p>
+                            <div class="project-links">
+                                <a href="#"><i class="fas fa-external-link-alt"></i> Live</a>
+                                <a href="#"><i class="fab fa-github"></i> Code</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonial-section">
+        <div class="container">
+            <span class="section-label" data-aos="fade-up">REVIEWS</span>
+            <h2 data-aos="fade-up">Client feedback.</h2>
+            <div class="swiper mySwiper" data-aos="fade-up">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div style="color: #FFD700; margin-bottom: 1rem;">★★★★★</div>
+                            <p style="font-size: 1.1rem; margin-bottom: 1.5rem; font-style: italic;">"Raj's expertise in the MERN stack is outstanding. He delivered our EcoMart platform ahead of schedule."</p>
+                            <h4>— Ankit Sharma</h4>
+                            <p style="color: var(--text-muted);">Founder, StartupJaipur</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div style="color: #FFD700; margin-bottom: 1rem;">★★★★★</div>
+                            <p style="font-size: 1.1rem; margin-bottom: 1.5rem; font-style: italic;">"A Groot Academy graduate? His work on our MERN dashboard was simply brilliant."</p>
+                            <h4>— Vikas Goyal</h4>
+                            <p style="color: var(--text-muted);">CTO, WebWizards</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div style="color: #FFD700; margin-bottom: 1rem;">★★★★★</div>
+                            <p style="font-size: 1.1rem; margin-bottom: 1.5rem; font-style: italic;">"RK Logix deployed our e-commerce project in just two weeks. Exceptional speed and quality."</p>
+                            <h4>— Priya Mehta</h4>
+                            <p style="color: var(--text-muted);">Product Lead, DigiSolve</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION WITH EMAILJS INTEGRATION -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="contact-grid" data-aos="zoom-in">
+                <div>
+                    <span class="section-label">CONNECT</span>
+                    <h2 style="font-size: 2.5rem; margin-bottom: 1.5rem;">Start your project with RK Logix.</h2>
+                    <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 2rem;">
+                        Whether you need a full-scale MERN application or a high-fidelity design collaboration—reach out without hesitation. 
+                        From Groot Academy to RK Logix, I'm here to bring your vision to life.
+                    </p>
+                    <div style="background: rgba(0,206,209,0.1); padding: 2rem; border-radius: 24px; border-left: 4px solid var(--primary);">
+                        <p style="margin-bottom: 0.8rem;"><i class="fas fa-check-circle" style="color: var(--primary);"></i> 24/7 — Response within 24 hours</p>
+                        <p style="margin-bottom: 0.8rem;"><i class="fas fa-check-circle" style="color: var(--primary);"></i> Complimentary MERN project consultation</p>
+                        <p><i class="fas fa-check-circle" style="color: var(--primary);"></i> RK Logix · Proudly based in Jaipur</p>
+                    </div>
+                    
+                    <!-- CV Download in Contact Section -->
+                    <div class="cv-download-section" style="margin-top: 2rem;" data-aos="fade-up">
+                        <a href="raj-kumawat-cv.pdf" download class="btn btn-download" style="padding: 0.8rem 2rem;">
+                            <i class="fas fa-file-pdf"></i> Download CV Before Contacting
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Email address" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="phone" name="phone" placeholder="what'sapp number">
+                        </div>
+                        <div class="form-group">
+                            <select id="service" name="service">
+                                <option value="" disabled selected>Select a service</option>
+                                <option value="MERN Full Stack">MERN Full Stack</option>
+                                <option value="HTML/CSS/JS">HTML/CSS/JS</option>
+                                <option value="E‑commerce">E‑commerce</option>
+                                <option value="UI/UX Consultation">UI/UX Consultation</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" rows="4" placeholder="Tell me about your project..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1.2rem;">
+                            <i class="fas fa-paper-plane" style="margin-right: 8px;"></i> Send Message
+                        </button>
+                        <p id="form-status" style="margin-top: 1.5rem; text-align: center; font-weight: 500;"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p style="display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                <span>© 2025 Raj Kumawat · RK Logix</span>
+                <span style="color: var(--text-muted);">|</span>
+                <span>MERN Stack Developer</span>
+                <span style="color: var(--text-muted);">|</span>
+                <span>Groot Academy, Jaipur (Alumni)</span>
+            </p>
+            <p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.9rem;">
+                <i class="fas fa-cube" style="color: var(--primary);"></i> Designed with precision in Rajasthan
+            </p>
+            <!-- Footer CV Download -->
+            <div style="margin-top: 1.5rem;">
+                <a href="raj-kumawat-cv.pdf" download style="color: var(--primary); text-decoration: none; border-bottom: 1px dashed var(--primary); padding-bottom: 2px;">
+                    <i class="fas fa-file-pdf"></i> Download CV
+                </a>
+                <span style="color: var(--text-muted); margin: 0 10px;">|</span>
+                <a href="raj-kumawat-resume.docx" download style="color: var(--primary); text-decoration: none; border-bottom: 1px dashed var(--primary); padding-bottom: 2px;">
+                    <i class="fas fa-file-word"></i> Download Resume
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            easing: 'cubic-bezier(0.165, 0.84, 0.44, 1)'
+        });
+
+        // Swiper Carousel
+        const swiper = new Swiper('.mySwiper', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            breakpoints: {
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 }
+            }
+        });
+
+        // EmailJS Integration
+        (function() {
+            emailjs.init("7LevK63jBXH2WiRAk");
+            
+            const contactForm = document.getElementById('contact-form');
+            const statusEl = document.getElementById('form-status');
+
+            if(contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    const serviceID = 'service_n7bpigp';
+                    const templateID = 'template_gnoi1sk';
+
+                    statusEl.textContent = '📨 Sending message...';
+                    statusEl.style.color = '#00ced1';
+
+                    emailjs.sendForm(serviceID, templateID, this)
+                        .then(() => {
+                            statusEl.textContent = '✨ Message sent! RK Logix will reply within 24 hours.';
+                            statusEl.style.color = '#00ced1';
+                            contactForm.reset();
+                        })
+                        .catch((err) => {
+                            console.error('EmailJS error:', err);
+                            statusEl.textContent = '⚠️ Failed to send. Please email raj@rklogix.dev directly.';
+                            statusEl.style.color = '#ff6b6b';
+                        });
+                });
+            }
+        })();
+
+        // Project Filtering
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                const filterValue = this.getAttribute('data-filter');
+
+                projectCards.forEach(card => {
+                    if(filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                        card.style.display = 'flex';
+                        card.style.flexDirection = 'column';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animated skill circles
+        const skillCircles = document.querySelectorAll('.skill-circle');
+        const skillPercentages = [90, 80, 75, 70, 85];
+        
+        skillCircles.forEach((circle, index) => {
+            let degree = (skillPercentages[index] * 3.6);
+            circle.style.background = `conic-gradient(var(--primary) 0deg ${degree}deg, rgba(255,255,255,0.1) ${degree}deg 360deg)`;
+        });
+
+        // Mobile See More Toggle Function
+        window.toggleMobileItems = function(type) {
+            if(type === 'process') {
+                const processCards = document.querySelectorAll('.process-card.mobile-hidden');
+                const btn = document.querySelector('#seeMoreProcess .btn-mobile');
+                
+                processCards.forEach(card => {
+                    card.classList.toggle('show-mobile');
+                });
+                
+                if(btn.innerHTML.includes('See More')) {
+                    btn.innerHTML = '<i class="fas fa-chevron-up"></i> Show Less';
+                } else {
+                    btn.innerHTML = '<i class="fas fa-chevron-down"></i> See More Process Steps';
+                }
+            }
+        };
+
+        window.addEventListener('load', function() {
+            if(window.innerWidth <= 768) {
+                const processCards = document.querySelectorAll('.process-card.mobile-hidden');
+                processCards.forEach((card, index) => {
+                    if(index >= 2) {
+                        card.classList.remove('show-mobile');
+                    } else {
+                        card.classList.add('show-mobile');
+                    }
+                });
+            }
+        });
+
+        // CV Download Tracking
+        document.querySelectorAll('[download]').forEach(link => {
+            link.addEventListener('click', function() {
+                console.log('CV/Resume download initiated:', this.href);
+            });
+        });
+    </script>
+</body>
+</html>
