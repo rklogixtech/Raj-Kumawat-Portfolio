@@ -940,39 +940,31 @@
         <div class="container">
             <span class="section-label" data-aos="fade-up">CAPABILITIES</span>
             <h2 data-aos="fade-up">Built with a modern stack.</h2>
-            <div class="skills-grid">
-                <div class="skill-item" data-aos="fade-up" data-aos-delay="0">
-                    <div class="skill-circle" style="background: conic-gradient(var(--primary) 0deg 324deg, rgba(255,255,255,0.1) 0deg);">
-                        <span>90%</span>
-                    </div>
-                    <div class="skill-title">HTML/CSS/JS</div>
-                    <span style="color: var(--text-muted);">4+ Projects</span>
-                </div>
-                <div class="skill-item" data-aos="fade-up" data-aos-delay="50">
-                    <div class="skill-circle" style="background: conic-gradient(var(--secondary) 0deg 288deg, rgba(255,255,255,0.1) 0deg);">
-                        <span>80%</span>
-                    </div>
-                    <div class="skill-title">React.js</div>
-                    <span style="color: var(--text-muted);">MERN Expertise</span>
-                </div>
-                <div class="skill-item" data-aos="fade-up" data-aos-delay="100">
-                    <div class="skill-circle" style="background: conic-gradient(var(--accent-1) 0deg 270deg, rgba(255,255,255,0.1) 0deg);">
-                        <span>75%</span>
-                    </div>
-                    <div class="skill-title">Node.js</div>
-                    <span style="color: var(--text-muted);">Express API</span>
-                </div>
-                <div class="skill-item" data-aos="fade-up" data-aos-delay="150">
-                    <div class="skill-circle" style="background: conic-gradient(var(--accent-2) 0deg 252deg, rgba(255,255,255,0.1) 0deg);">
-                        <span>70%</span>
-                    </div>
-                    <div class="skill-title">MongoDB</div>
-                    <span style="color: var(--text-muted);">E‑commerce Ready</span>
-                </div>
-                <div class="skill-item" data-aos="fade-up" data-aos-delay="200">
-                    <div class="skill-circle" style="background: conic-gradient(var(--primary) 0deg 306deg, rgba(255,255,255,0.1) 0deg);">
-                        <span>85%</span>
-                    </div>
+            <div class="skill-item" data-aos="fade-up" data-aos-delay="0">
+    <div class="skill-circle"><span>85%</span></div>
+    <div class="skill-title">React.js</div>
+    <span style="color: var(--text-muted);">Redux Toolkit · Next.js</span>
+</div>
+<div class="skill-item" data-aos="fade-up" data-aos-delay="50">
+    <div class="skill-circle"><span>75%</span></div>
+    <div class="skill-title">TypeScript</div>
+    <span style="color: var(--text-muted);">Typed React Apps</span>
+</div>
+<div class="skill-item" data-aos="fade-up" data-aos-delay="100">
+    <div class="skill-circle"><span>80%</span></div>
+    <div class="skill-title">Node.js</div>
+    <span style="color: var(--text-muted);">Express · REST APIs</span>
+</div>
+<div class="skill-item" data-aos="fade-up" data-aos-delay="150">
+    <div class="skill-circle"><span>75%</span></div>
+    <div class="skill-title">MongoDB</div>
+    <span style="color: var(--text-muted);">Mongoose</span>
+</div>
+<div class="skill-item" data-aos="fade-up" data-aos-delay="200">
+    <div class="skill-circle"><span>80%</span></div>
+    <div class="skill-title">Auth & Security</div>
+    <span style="color: var(--text-muted);">JWT · Bcrypt</span>
+</div>
                     <div class="skill-title">UI/UX</div>
                     <span style="color: var(--text-muted);">Design Legacy</span>
                 </div>
@@ -1117,18 +1109,18 @@
                     </div>
                 </div>
                 <div class="project-card" data-category="mern" data-aos="zoom-in-up" data-aos-delay="300">
-                    <div class="project-img" style="background-image: url('Blog Space.webp');">
-                        <div class="project-overlay">
-                            <div class="project-cat">MERN · CMS</div>
-                            <h3 class="project-title">BlogSpace</h3>
-                            <p class="project-desc">Markdown editor, Context API, RESTful API architecture.</p>
-                            <div class="project-links">
-                                <a href="#"><i class="fas fa-external-link-alt"></i> Live</a>
-                                <a href="#"><i class="fab fa-github"></i> Code</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div class="project-img" style="background-image: url('nikon.png');">
+                <div class="project-overlay">
+                <div class="project-cat">REACT · FRONTEND</div>
+                <h3 class="project-title">Nikon</h3>
+                <p class="project-desc">Responsive React web app with a clean product-focused UI, built and deployed on Vercel.</p>
+                <div class="project-links">
+                <a href="https://nikon-theta.vercel.app/" target="_blank"><i class="fas fa-external-link-alt"></i> Live</a>
+                <a href="https://github.com/rklogixtech/YOUR-REPO-NAME" target="_blank"><i class="fab fa-github"></i> Code</a>
+            </div>
+        </div>
+    </div>
+</div>
                 <div class="project-card" data-category="ecomm" data-aos="zoom-in-up" data-aos-delay="350">
                     <div class="project-img" style="background-image: url('EcoMart.webp');">
                         <div class="project-overlay">
@@ -1362,7 +1354,7 @@
 
         // Animated skill circles
         const skillCircles = document.querySelectorAll('.skill-circle');
-        const skillPercentages = [90, 80, 75, 70, 85];
+        const skillPercentages = [85, 75, 80, 75, 80];
         
         skillCircles.forEach((circle, index) => {
             let degree = (skillPercentages[index] * 3.6);
