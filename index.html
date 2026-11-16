@@ -1783,6 +1783,12 @@
     </div>
 
     <script>
+        // safety net: koi bhi JS error aaye to loader site ko block nahi karega
+        window.addEventListener('error', () => {
+            const l = document.getElementById('ld');
+            if (l) { l.remove(); document.body.classList.remove('ld'); }
+        });
+
         const calm = matchMedia('(prefers-reduced-motion:reduce)').matches, fine = matchMedia('(hover:hover) and (pointer:fine)').matches && !calm;
         const $ = id => document.getElementById(id);
         // text scramble
@@ -1809,28 +1815,20 @@
         $('sv').innerHTML = [['full-stack.app', 'Full-stack web apps', 'React frontends with Node.js, Express and MongoDB backends, built and deployed end to end.', 'react + node + mongo'], ['api.auth.pay', 'APIs, auth and payments', 'RESTful APIs, JWT authentication, role-based access and Razorpay checkout flows.', 'jwt + razorpay'], ['ai.integration', 'AI-powered features', 'LLM API integration, prompt design and chatbot interfaces added to real web apps.', 'llm + prompts']].map((s, i) => `<div class="sv cb tilt rv" style="--d:${i * .1}s"><div><span class="st">[ active ] ${s[0]}</span><h3 style="margin-top:14px">${s[1]}</h3><p>${s[2]}</p></div><span class="fn">${s[3]}</span></div>`).join('');
         const SK = [['ai_automation', ['LLM API Integration', 'Prompt Engineering', 'AI Chatbot UIs', 'AI-Assisted Development', 'Antigravity', 'Claude / ChatGPT'], 1], ['frontend', ['React.js', 'Next.js', 'TypeScript', 'Redux Toolkit', 'React Query', 'Context API', 'React Router', 'Tailwind CSS', 'HTML5', 'CSS3']], ['backend_db', ['Node.js', 'Express.js', 'REST APIs', 'Middleware', 'Axios', 'MongoDB', 'Mongoose', 'Redis']], ['auth_tools', ['JWT', 'Bcrypt', 'Role-based access', 'Razorpay', 'Vercel', 'Render', 'Netlify', 'Git & GitHub', 'Postman', 'VS Code']]];
         $('sk').innerHTML = SK.map((s, i) => `<div class="rv${s[2] ? ' ai' : ''}" style="--d:${i * .08}s"><h4>./${s[0]}</h4><div class="tags">${s[1].map(x => `<span>${x}</span>`).join('')}</div></div>`).join('');
-        // ► PROJECTS. g = gallery images: apni images 'images/' folder me rakho aur yahan naam add karo.
+        // PROJECTS. g = gallery images: apni images same folder / 'images/' folder me rakho aur yahan naam add karo.
         const PR = [
             {n: 'Nikon', d: 'Responsive React web app with a clean, product-focused UI, deployed on Vercel.', t: ['React', 'Vercel'], c: '', l: 'https://nikon-theta.vercel.app/', k: 'Full Stack', g: ['project-camera.png']},
             {n: 'Bungalow Makers', d: 'Website for a house design company.', t: ['HTML', 'CSS', 'JavaScript'], c: 'https://github.com/rklogixtech/bungalow-makers', l: 'https://bungalow-makers.vercel.app', k: 'Frontend', g: ['project-3.png']},
             {n: 'Funky Teens', d: 'Fashion store for menswear, womenswear, cosmetics and accessories.', t: ['HTML', 'CSS', 'JavaScript'], c: 'https://github.com/rklogixtech/funky-teens-online', l: 'https://funky-teens-online.vercel.app', k: 'Frontend', g: ['project-5.png']},
             {n: 'The Bulltower', d: 'Modern, professional trading platform for stock market learners and active traders.', t: ['HTML', 'CSS', 'JavaScript'], c: 'https://github.com/rklogixtech/the-bulltower', l: 'https://the-bulltower.vercel.app', k: 'Frontend', g: ['project-4.png']},
             {n: 'Burger Cafe', d: 'Fully responsive menu and shopping cart interface built with vanilla JavaScript.', t: ['HTML', 'CSS', 'JavaScript'], c: 'https://github.com/rklogixtech/burger-cafe', l: 'https://burger-cafe-ast9.vercel.app/', k: 'Frontend', g: ['project-2.jpeg']},
-            {n: 'Portfolio v1', d: 'My first portfolio: a complete responsive website built with Bootstrap.', t: ['Bootstrap', 'HTML', 'CSS'], c: 'https://github.com/rklogixtech/bootstrap-demo', l: 'https://bootstrap-demo-tau.vercel.app', k: 'Frontend', g: ['project-1.jpeg']
+            {n: 'Portfolio v1', d: 'My first portfolio: a complete responsive website built with Bootstrap.', t: ['Bootstrap', 'HTML', 'CSS'], c: 'https://github.com/rklogixtech/bootstrap-demo', l: 'https://bootstrap-demo-tau.vercel.app', k: 'Frontend', g: ['project-1.jpeg']},
             {n: 'MERN E-Commerce', d: 'Full-stack store with product browsing, shopping cart, JWT authentication, Razorpay checkout and an admin dashboard for products, orders and inventory.', t: ['MongoDB', 'Express', 'React', 'Node.js', 'Razorpay'], c: 'https://github.com/rklogixtech/MERN-E-Commerce', l: '', k: 'Full Stack', g: ['EcoMart.webp']},
-            {n: 'myCRM', d: 'CRM with lead management, deal pipeline, follow-ups, activity timeline, role-based access and audit logging.', t: ['React', 'Tailwind', 'Redis', 'MongoDB'], c: 'https://github.com/rklogixtech/myCRM', l: '', k: 'Full Stack', g: ['MYCRM']},
+            {n: 'myCRM', d: 'CRM with lead management, deal pipeline, follow-ups, activity timeline, role-based access and audit logging.', t: ['React', 'Tailwind', 'Redis', 'MongoDB'], c: 'https://github.com/rklogixtech/myCRM', l: '', k: 'Full Stack', g: ['MYCRM.png']},
             {n: 'Tours & Travels', d: 'Backend APIs for tour package management, bookings, authentication and admin operations.', t: ['Node.js', 'Express', 'MongoDB', 'REST'], c: 'https://github.com/rklogixtech/tour-and-travels', l: '', k: 'Full Stack', g: ['tourandtravels.png']},
             {n: 'FormCraft', d: 'No-code form builder to create, customize, publish and manage dynamic forms.', t: ['React', 'Node.js', 'MongoDB', 'Tailwind'], c: '', l: '', k: 'Full Stack', g: ['images/formcraft-1.jpg']},
-            {
-             n: 'Mini Projects Collection',
-             d: 'A collection of multiple web applications including Tic Tac Toe Game, Todo Management App, E-Commerce Website and Quiz Application, built with responsive UI and interactive functionality.',
-             t: ['React', 'JavaScript', 'Node.js', 'Express', 'MongoDB'],
-             c: 'YOUR_GITHUB_REPOSITORY_LINK',
-             l: '',
-             k: 'Full Stack',
-             g: ['Tic-Tac-Toe.png', 'todo.png']
-},
-            }];
+            {n: 'Mini Projects Collection', d: 'A collection of multiple web applications including Tic Tac Toe Game, Todo Management App, E-Commerce Website and Quiz Application, built with responsive UI and interactive functionality.', t: ['React', 'JavaScript', 'Node.js', 'Express', 'MongoDB'], c: '', l: '', k: 'Full Stack', g: ['Tic-Tac-Toe.png', 'todo.png']}
+        ];
         const io = new IntersectionObserver(es => es.forEach(e => {if (e.isIntersecting) {e.target.classList.add('on'); io.unobserve(e.target); const h = e.target.querySelector('[data-s]'); if (h && !calm) scr(h); if (!calm) e.target.querySelectorAll('.tags span').forEach((c, i) => setTimeout(() => scr(c), i * 50))} }), {threshold: .12});
         const watch = () => document.querySelectorAll('.rv:not(.on)').forEach(el => io.observe(el));
         const show = f => {
